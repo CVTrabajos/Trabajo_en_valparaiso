@@ -3,104 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabajos en Valparaíso</title>
-    <!-- Librería para leer el Google Sheet fácilmente -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <style>
-        /* Estilos de la página */
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; color: #333; }
-        header { background-color: #1e3a8a; color: white; padding: 25px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { margin: 0; font-size: 26px; letter-spacing: 0.5px; }
-        header p { margin: 8px 0 0 0; font-size: 15px; opacity: 0.9; }
-        .container { max-width: 800px; margin: 25px auto; padding: 0 15px; }
-        .search-box { width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 25px; font-size: 16px; box-sizing: border-box; outline: none; transition: border-color 0.3s; }
-        .search-box:focus { border-color: #2563eb; }
-        .job-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; border-left: 5px solid #1e3a8a; transition: transform 0.2s, box-shadow 0.2s; }
-        .job-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .job-title { margin: 0 0 12px 0; font-size: 19px; color: #1e3a8a; }
-        .job-detail { margin: 6px 0; font-size: 14.5px; color: #4b5563; }
-        .btn-postular { display: block; background-color: #2563eb; color: white; text-decoration: none; padding: 12px 15px; border-radius: 6px; margin-top: 18px; font-weight: bold; text-align: center; transition: background-color 0.3s; }
-        .btn-postular:hover { background-color: #1d4ed8; }
-        .loader { text-align: center; padding: 30px; font-size: 16px; color: #6b7280; font-style: italic; }
-    </style>
+
+    <title>Ofertas de trabajo</title>
+
+    <meta http-equiv="refresh" content="0; url=https://docs.google.com/spreadsheets/d/1PLMTsVRI2KSJmC3jfTS0i71k_ugWVxg2ze6B98lurLE/edit?usp=sharing">
+
+    <script>
+        window.location.replace(
+            "https://docs.google.com/spreadsheets/d/1PLMTsVRI2KSJmC3jfTS0i71k_ugWVxg2ze6B98lurLE/edit?usp=sharingg"
+        );
+    </script>
 </head>
+
 <body>
-
-<header>
-    <h1>Trabajos en Valparaíso</h1>
-    <p>Encuentra tu próxima oportunidad laboral en la quinta región</p>
-</header>
-
-<div class="container">
-    <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar por cargo, empresa o comuna..." onkeyup="filterJobs()">
-    
-    <div id="loading" class="loader">Cargando las últimas ofertas de empleo...</div>
-    <div id="job-container"></div>
-</div>
-
-<script>
-    // Tu enlace de Google Sheets convertido para exportar a CSV
-    const sheetCSV = "https://docs.google.com/spreadsheets/d/1PLMTsVRI2KSJmC3jfTS0i71k_ugWVxg2ze6B98lurLE/export?format=csv";
-    let allJobs = [];
-
-    // Leer el Excel
-    Papa.parse(sheetCSV, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            document.getElementById('loading').style.display = 'none';
-            // Guardar ofertas ignorando filas vacías
-            allJobs = results.data.filter(job => job.Cargo && job.Cargo.trim() !== "");
-            renderJobs(allJobs);
-        },
-        error: function(error) {
-            document.getElementById('loading').innerHTML = "Error al cargar los empleos. Verifica que el Google Sheet sea público.";
-        }
-    });
-
-    // Función para dibujar las tarjetas de trabajo
-    function renderJobs(jobs) {
-        const container = document.getElementById('job-container');
-        container.innerHTML = "";
-        
-        if(jobs.length === 0) {
-            container.innerHTML = "<p style='text-align:center; color:#6b7280;'>No se encontraron empleos con esa búsqueda.</p>";
-            return;
-        }
-
-        // Leer fila por fila
-        jobs.forEach(job => {
-            const card = document.createElement('div');
-            card.className = 'job-card';
-            
-            // Nombres de las columnas exactos como están en tu Excel
-            const cargo = job.Cargo || "Cargo no especificado";
-            const empresa = job.Empresa || "Confidencial";
-            const ubicacion = job.Ubicacion || "Valparaíso";
-            const fecha = job.Fecha || "";
-            const link = job.Link || "#";
-
-            card.innerHTML = `
-                <h3 class="job-title">${cargo}</h3>
-                <p class="job-detail">🏢 <strong>Empresa:</strong> ${empresa}</p>
-                <p class="job-detail">📍 <strong>Ubicación:</strong> ${ubicacion}</p>
-                ${fecha ? `<p class="job-detail">📅 <strong>Publicado:</strong> ${fecha}</p>` : ''}
-                <a href="${link}" target="_blank" class="btn-postular">Postular Aquí</a>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    // Función para el buscador
-    function filterJobs() {
-        const query = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = allJobs.filter(job => {
-            // Unir todos los datos de la fila para buscar en ellos
-            const text = Object.values(job).join(" ").toLowerCase();
-            return text.includes(query);
-        });
-        renderJobs(filtered);
-    }
-</script>
+    <p>Redirigiendo a las ofertas de trabajo...</p>
+</body>
+</html>
 </body>
 </html>
